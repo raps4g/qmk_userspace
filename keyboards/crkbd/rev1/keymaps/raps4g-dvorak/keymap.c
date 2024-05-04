@@ -92,6 +92,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define MOD_T RCTL_T(ES_T)
 #define MOD_N RSFT_T(ES_N)
 
+#define MOD_2 LSFT_T(ES_2)
+#define MOD_3 LCTL_T(ES_3)
+#define MOD_4 LALT_T(ES_4)
+#define MOD_7 LALT_T(ES_7)
+#define MOD_8 RCTL_T(ES_8)
+#define MOD_9 RSFT_T(ES_9)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -110,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB, ES_MORD,   ES_AT, ES_NUMB,  ES_DLR, ES_PERC,                      ES_CIRC, ES_AMPR, ES_ASTR, ES_PIPE, ES_BSLS, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,    ES_1,    ES_2,    ES_3,    ES_4,    ES_5,                         ES_6,    ES_7,    ES_8,    ES_9,    ES_0, ES_TILD,
+      XXXXXXX,    ES_1,   MOD_2,   MOD_3,   MOD_4,    ES_5,                         ES_6,   MOD_7,   MOD_8,   MOD_9,    ES_0, ES_TILD,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, ES_IQUE, ES_LPRN, ES_LBRC, ES_LCBR, ES_IEXL,                      ES_EXLM, ES_RCBR, ES_RBRC, ES_RPRN, ES_QUES, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
