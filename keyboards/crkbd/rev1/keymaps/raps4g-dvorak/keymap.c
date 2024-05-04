@@ -1,5 +1,30 @@
+#include "keycodes.h"
 #include QMK_KEYBOARD_H
 #include "keymap_spanish_latin_america.h"
+
+const key_override_t quot_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_QUOT, ES_DQUO);
+// shift + , = <
+const key_override_t dot_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_COMM, ES_LABK);
+// shift + . = >
+const key_override_t comm_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_DOT, ES_RABK);
+// shift + ; = :
+const key_override_t scln_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_SCLN, ES_COLN);
+// shift + / = ?
+const key_override_t slsh_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_SLSH, ES_QUES);
+// shift + \ = |
+const key_override_t bsls_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_BSLS, ES_PIPE);
+// shift + = = +
+const key_override_t eql_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_EQL, ES_PLUS);
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &comm_key_override,
+	&dot_key_override,
+    &quot_key_override,
+    &scln_key_override,
+    &slsh_key_override,
+    &eql_key_override,
+    &bsls_key_override,
+	NULL
+};
 
 enum custom_keycodes {
     ES_AAC = SAFE_RANGE,
