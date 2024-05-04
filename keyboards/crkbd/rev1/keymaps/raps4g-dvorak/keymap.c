@@ -31,7 +31,14 @@ enum custom_keycodes {
     ES_EAC,
     ES_IAC,
     ES_OAC,
-    ES_UAC
+    ES_UAC,
+    ES_AACUP,
+    ES_EACUP,
+    ES_IACUP,
+    ES_OACUP,
+    ES_UACUP,
+    ES_UDIAE,
+
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -50,6 +57,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case ES_UAC:
             (record->event.pressed) ? SEND_STRING(SS_TAP(X_LBRC) SS_TAP(X_U)) : clear_keyboard();
+            break;
+        case ES_AACUP:
+            (record->event.pressed) ? SEND_STRING(SS_TAP(X_LBRC) SS_DOWN(X_LSFT) SS_TAP(X_A)) : clear_keyboard();
+            break;
+        case ES_EACUP:
+            (record->event.pressed) ? SEND_STRING(SS_TAP(X_LBRC) SS_DOWN(X_LSFT) SS_TAP(X_E)) : clear_keyboard();
+            break;
+        case ES_IACUP:
+            (record->event.pressed) ? SEND_STRING(SS_TAP(X_LBRC) SS_DOWN(X_LSFT) SS_TAP(X_I)) : clear_keyboard();
+            break;
+        case ES_OACUP:
+            (record->event.pressed) ? SEND_STRING(SS_TAP(X_LBRC) SS_DOWN(X_LSFT) SS_TAP(X_O)) : clear_keyboard();
+            break;
+        case ES_UACUP:
+            (record->event.pressed) ? SEND_STRING(SS_TAP(X_LBRC) SS_DOWN(X_LSFT) SS_TAP(X_U)) : clear_keyboard();
+            break;
+        case ES_UDIAE:
+            (record->event.pressed) ? SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_LBRC) SS_UP(X_LSFT) SS_TAP(X_U)) : clear_keyboard();
             break;
     }
     return true;
@@ -107,11 +132,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_LAT] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB, ES_QUOT, ES_COMM,  ES_DOT,    ES_P,    ES_Y,                         ES_F,    ES_G,    ES_C,    ES_R,    ES_L, KC_BSPC,
+       KC_TAB,ES_AACUP,ES_OACUP,ES_EACUP,ES_UACUP,ES_IACUP,                         ES_F,    ES_G,    ES_C,    ES_R,    ES_L,TG(_LAT),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       ES_SLSH,  ES_AAC,  ES_OAC,  ES_EAC,  ES_UAC,  ES_IAC,                         ES_D,    ES_H,    ES_T, ES_NTIL,    ES_S, ES_DIAE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       ES_EQL, ES_SCLN,    ES_Q,    ES_J,    ES_K,    ES_X,                         ES_B,    ES_M,    ES_W,    ES_V,    ES_Z,OSL(_LAT),
+       ES_EQL, ES_SCLN,    ES_Q,    ES_J,ES_UDIAE,    ES_X,                         ES_B,    ES_M,    ES_W,    ES_V,   ES_Z,OSL(_LAT),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                  XXXXXXX, TT(_NS),   LGUI_T(KC_SPC),     KC_ENT, TT(_FN),  KC_RALT
                                       //`--------------------------'  `--------------------------'
