@@ -84,6 +84,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define _NS 1
 #define _FN 2
 #define _LAT 3
+#define _MCR 4
 
 #define MOD_O LSFT_T(ES_O)
 #define MOD_E LCTL_T(ES_E)
@@ -108,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        ES_EQL, ES_SCLN,    ES_Q,    ES_J,    ES_K,    ES_X,                         ES_B,    ES_M,    ES_W,    ES_V,    ES_Z,OSL(_LAT),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                 XXXXXXX, TT(_NS),   LGUI_T(KC_SPC),     KC_ENT, TT(_FN),  KC_RALT
+                                TT(_MCR), TT(_NS),   LGUI_T(KC_SPC),     KC_ENT, TT(_FN),  KC_RALT
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -121,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, ES_IQUE, ES_LPRN, ES_LBRC, ES_LCBR, ES_IEXL,                      ES_EXLM, ES_RCBR, ES_RBRC, ES_RPRN, ES_QUES, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                 XXXXXXX, _______,   LGUI_T(KC_SPC),     KC_ENT, TT(_FN),  KC_RALT
+                                TT(_MCR), _______,   LGUI_T(KC_SPC),     KC_ENT, TT(_FN),  KC_RALT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -133,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, XXXXXXX, XXXXXXX,  KC_END, KC_PGDN, KC_MENU,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                 XXXXXXX, TT(_NS),   LGUI_T(KC_SPC),     KC_ENT, _______,  KC_RALT
+                                TT(_MCR), TT(_NS),   LGUI_T(KC_SPC),     KC_ENT, _______,  KC_RALT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -145,8 +146,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        ES_EQL, ES_SCLN,    ES_Q,    ES_J,ES_UDIAE,    ES_X,                         ES_B,    ES_M,    ES_W,    ES_V,   ES_Z,OSL(_LAT),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                 XXXXXXX, TT(_NS),   LGUI_T(KC_SPC),     KC_ENT, TT(_FN),  KC_RALT
+                                TT(_MCR), TT(_NS),   LGUI_T(KC_SPC),     KC_ENT, TT(_FN),  KC_RALT
                                       //`--------------------------'  `--------------------------'
 
+  ),
+    [_MCR] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,                      XXXXXXX, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN2, XXXXXXX, QK_BOOT,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LSFT, XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,                      KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LCTL,LCTL(KC_Z),LCTL(KC_X),LCTL(KC_C),LCTL(KC_V),XXXXXXX,               XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                 _______,   LGUI_T(KC_SPC), TT(_NS),     KC_ENT, TT(_FN),  KC_RALT
+                                      //`--------------------------'  `--------------------------'
   )
+
 };
