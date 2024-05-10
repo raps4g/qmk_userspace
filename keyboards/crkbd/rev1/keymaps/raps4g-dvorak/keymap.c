@@ -1,6 +1,8 @@
 #include "keycodes.h"
 #include QMK_KEYBOARD_H
 #include "keymap_spanish_latin_america.h"
+#include "oled_driver.h"
+#include "oled-renders.h"
 
 const key_override_t quot_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_QUOT, ES_DQUO);
 // shift + , = <
@@ -163,3 +165,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 
 };
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    return OLED_ROTATION_270;
+}
+
+bool oled_task_user() {
+    oled_set_brightness(80);
+    if (!is_keyboard_master()) {
+        //render_lisa();
+        oled_set_cursor(0,4);
+        render_matecito();
+        return false;
+    }
+    oled_clear();
+    switch (get_highest_layer(layer_state)) {
+        case _BASE:
+            render_layer_base();
+            break;
+        case _NS:
+            render_layer_sym();
+            break;
+        case _FN:
+            render_layer_fn();
+            break;
+        case _LAT:
+            render_layer_lat();
+            break;
+        case _MCR:
+            render_layer_macros();
+            break;
+    }
+    render_caps();
+    return false;
+}
+
