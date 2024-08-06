@@ -1,3 +1,11 @@
+# Corne Dvorak keymap
+This keymap replicates in a sense the "US (Dvorak)" layout, but was designed to be used in a system using the "Spanish (Latin America)" layout (for convinience). To achieve this it uses the `keymap_spanish_latin_america.h` header and key overrides such as `const key_override_t dot_key_override = ko_make_basic(MOD_MASK_SHIFT, ES_COMM, ES_LABK);` to match the US shifted behaviour.
+
+It also provides LED indicators for each layer.
+
+![Screenshot](keyboards/crkbd/rev1/keymaps/raps4g-dvorak/layout.png)
+
+
 # QMK Userspace
 
 This is a template repository which allows for an external set of QMK keymaps to be defined and compiled. This is useful for users who want to maintain their own keymaps without having to fork the main QMK repository.
